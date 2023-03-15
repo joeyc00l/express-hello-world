@@ -1,18 +1,11 @@
 const express = require('express');
 const axios = require('axios');
-const cors = require('cors');
 
 const app = express();
-
-// Enable CORS for all routes
-app.use(cors());
 
 app.get('/transactions', async (req, res) => {
   const { address, network } = req.query;
   let apiUrl, apiKey;
-
-  // Set CORS header
-  res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (network === 'ethereum') {
     apiUrl = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&sort=asc`;
@@ -52,8 +45,6 @@ app.get('/transactions', async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+app.listen(3000, () => {
+  console.log('Server started on port 3000');
 });
-l
