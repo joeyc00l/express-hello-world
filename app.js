@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors());
+app.use(cors({ origin: 'https://spottedquarterlygui.hunterjoseph1.repl.co' }))
 
 app.get('/transactions', async (req, res) => {
   const { address, network } = req.query;
