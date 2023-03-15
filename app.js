@@ -5,11 +5,14 @@ const cors = require('cors');
 const app = express();
 
 // Enable CORS for all routes
-app.use(cors({ origin: 'https://spottedquarterlygui.hunterjoseph1.repl.co' }))
+app.use(cors());
 
 app.get('/transactions', async (req, res) => {
   const { address, network } = req.query;
   let apiUrl, apiKey;
+
+  // Set CORS header
+  res.setHeader('Access-Control-Allow-Origin', '*');
 
   if (network === 'ethereum') {
     apiUrl = `https://api.etherscan.io/api?module=account&action=txlist&address=${address}&sort=asc`;
